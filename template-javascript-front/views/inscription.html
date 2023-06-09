@@ -1,0 +1,20 @@
+<div class="container" id="log_inscr">
+    <div class="text-center ">
+        <h3>Inscription</h3>
+    </div>
+    <div>
+        <div>
+            <div class="mb-3">
+                <label for="label_user" class="form-label">Login</label>
+                <input type="email" class="form-control" id="label_user" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="mdp_user" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="mdp_user">
+                <div id="emailHelp" class="form-text">Deja inscrit ? <a id="link" onclick="navigate('authentification')" class="cl-info">Connecte toi</a> !
+                <span id="text_error" class="alert" style="color: crimson"></span></div>
+            </div>
+            <button type="button"  id="btn_inscr" class="btn btn-primary" onclick="inscController.creaUser(); navigate('authentification')">Inscription</button>
+        </div>
+    </div>
+</div>
