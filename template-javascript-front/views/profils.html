@@ -1,0 +1,49 @@
+ <div class="container">
+        <div class="text-center">
+            <h3 id="pseudo_compte"></h3>
+            <h3>Choix du profil</h3>
+            <div id="contenu_profils" class="row">
+            </div>
+        </div>
+        <div class="footer">
+            <div><a onclick="indexController.getDeconnection()" class="btn btn-danger">Se deconnecter</a></div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="addProfil" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Création d'un profil</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" id="Close" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="mb-3">
+                                <label for="pseudo_profil" class="form-label">Pseudo</label>
+                                <input type="email" class="form-control" id="pseudo_profil" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="mdp_profil" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" id="mdp_profil" placeholder="Mot de passe (optionnel)">
+                                <span id="text_error" class="alert" style="color: crimson"></span></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="avatar_profil" class="form-label">Avatar de votre profil</label>
+                                <input type="file" class="form-control" id="avatar_profil" onchange="profilsController.previewFile()">
+                                <div class="w-100 d-flex justify-content-center mt-3">
+                                <img id="img_profil"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div id="text-error"></div>
+                                <div class="w-100 d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary bg-danger" data-bs-dismiss="modal">Fermer</button>
+                                <button onclick="profilsController.creaProfil()" type="button" class="btn btn-primary">Créer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
