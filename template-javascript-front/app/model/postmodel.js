@@ -7,6 +7,17 @@ export default class MyModel {
 
     }
 
+    creaPost = async (data) => {
+        console.log("HELOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+        try{
+            return await this.MegaMindAPI.creaPost(data);
+        }
+        catch (e) {
+            console.log(e)
+            return undefined;
+        }
+    }
+
     getAllPostOfFollowedProfil = async (id_profil) => {
         try{
             return await this.MegaMindAPI.getAllPostOfFollowedProfil(id_profil);
@@ -27,7 +38,7 @@ export default class MyModel {
         }
     }
 
-    getMostComPosts = async () => {
+    getMostComPosts = async (id_profil) => {
         try{
             return await this.MegaMindAPI.getMostComPosts();
         }
@@ -37,7 +48,7 @@ export default class MyModel {
         }
     }
 
-    getMostLikedPosts = async () => {
+    getMostLikedPosts = async (id_profil) => {
         try{
             return await this.MegaMindAPI.getMostLikedPosts();
         }

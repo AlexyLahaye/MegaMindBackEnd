@@ -1,4 +1,16 @@
 <div id=entete>
-  <div id=entete_text>Ajouter un post </div><div id='txtAddPost'></div></div>
-<div id="contenus">
+    <div id=entete_text>Ajouter un post </div><div id='txtAddPost'></div></div>
+    <div id="contenus">
+        <label for="contenu_post" class="form-label">Contenu du post</label>
+        <input type="text" class="form-control" id="contenu_post" placeholder="Quoi de beau ?">
+        <label for="sensibilite" class="form-label">Sensibilité</label>
+        <select class="form-select" id="sensibilite" aria-label="Default select example">
+            <option selected value=0>Aucune Sensibilité</option>
+        </select>
+        <span id="text_error" class="alert" style="color: crimson"></span>
+    <div class="modal-footer">
+        <div id="text-error"></div>
+            <button type="button" onclick="location.reload()" class="btn btn-secondary">Close</button>
+            <button type="button" onclick="AddPostController.creaPost()" class="btn btn-primary">Créer</button>
+    </div>
 </div>

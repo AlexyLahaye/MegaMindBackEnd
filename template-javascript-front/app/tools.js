@@ -39,10 +39,10 @@ function navigate(view) {
     sessionStorage.setItem("currentView", view)
     include('MegaMind',  `views/${view}.html`, `./controllers/${view}.js`)
 }
-
-function navigateT(view) {
-    include('tout',  `views/${view}.html`, `./controllers/${view}.js`)
+function AddPostView(view) {
+    include('AddPost',  `views/${view}.html`, `./controllers/${view}.js`)
 }
+
 
 const dateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
 function reviver(key, value) {

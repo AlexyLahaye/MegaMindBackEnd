@@ -92,6 +92,14 @@
     position: fixed;
     bottom: 30px;
 }
+
+#AddPost {
+    background-color: white;
+    position: fixed;
+    top: 20%;
+    left: 42%;
+}
+
 button {
     text-align: center;
     border: none;
@@ -297,7 +305,7 @@ button:hover {
     display: flex;
     width: 400px;
 }
-#p_profil {
+.p_profil {
     border-radius: 100%;
     width: 40px;
     height: 40px;

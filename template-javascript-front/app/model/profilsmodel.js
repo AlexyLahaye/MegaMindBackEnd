@@ -30,6 +30,7 @@ export default class MyModel {
     creaProfil = async (data) => {
         try{
             return await this.MegaMindAPI.creaProfil(data);
+
         }
         catch (e) {
             console.log(e)

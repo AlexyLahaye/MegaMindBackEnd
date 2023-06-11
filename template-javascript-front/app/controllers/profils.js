@@ -24,7 +24,7 @@ class profilsController extends BaseController {
         const avatar_profil =document.getElementById("avatar_profil")
         let base64 = ""
         if(avatar_profil?.files?.length > 0){
-            let base64 = await this.toBase64(avatar_profil.files[0])
+            base64 = await this.toBase64(avatar_profil.files[0])
         }
         let text_error = document.getElementById("text_error")
         if(pseudo_profil !== '' && mdp_profil !== ''){

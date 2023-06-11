@@ -4,10 +4,8 @@ export default class MegaMindAPI{
         this.baseUrl = "http://localhost:3000";
     }
 
-    is_connected = () => {
 
-    }
-
+    // PARTIE USER
     getOneUser = (label_user) => {
         console.log(label_user)
         return new Promise ((resolve, reject) =>{
@@ -150,6 +148,28 @@ export default class MegaMindAPI{
         })
     }
 
+    // PARTIE POST
+
+    creaPost = (data) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/post`, {
+                method : "POST",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+
     getAllPostOfFollowedProfil = (id_profil) => {
         return new Promise ((resolve, reject) =>{
             fetch(`${this.baseUrl}/post/${id_profil}`, {
@@ -189,6 +209,7 @@ export default class MegaMindAPI{
     }
 
 
+    // PARTIE PAGE EXPLORER
     getMostFollowedProfil = () => {
         return new Promise ((resolve, reject) =>{
             fetch(`${this.baseUrl}/profil`, {
@@ -208,9 +229,9 @@ export default class MegaMindAPI{
         })
     }
 
-    getMostComPosts = () => {
+    getMostComPosts = (id_profil) => {
         return new Promise ((resolve, reject) =>{
-            fetch(`${this.baseUrl}/post/most/com`, {
+            fetch(`${this.baseUrl}/post/most/com/${id_profil}`, {
                 method : "GET",
                 headers : {'content-type' : 'application/json'}
             }) .then(res => {
@@ -227,9 +248,9 @@ export default class MegaMindAPI{
         })
     }
 
-    getMostLikedPosts = () => {
+    getMostLikedPosts = (id_profil) => {
         return new Promise ((resolve, reject) =>{
-            fetch(`${this.baseUrl}/post/most/like`, {
+            fetch(`${this.baseUrl}/post/most/like/${id_profil}`, {
                 method : "GET",
                 headers : {'content-type' : 'application/json'}
             }) .then(res => {
@@ -266,7 +287,7 @@ export default class MegaMindAPI{
     }
 
 
-    // LES ROUTES SENSIBILITE !
+    // LES ROUTES SENSIBILITE
     getAllSensi = () => {
         return new Promise ((resolve, reject) =>{
             fetch(`${this.baseUrl}/sensibilite/`, {
