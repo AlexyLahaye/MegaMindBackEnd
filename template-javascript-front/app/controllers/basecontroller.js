@@ -124,7 +124,9 @@ export default class BaseController {
                     <button type='button' onclick='navigate("notifications")'><img width=30px src='res/img/BellLogo1.png'><div class=MS>Notifications</div></button><br>
                     <button type='button' onclick='navigate("messagerie")'><img width=30px src='res/img/MessageLogo1.png'><div class=MS>Messages</div></button> <br>
                     <button type='button' onclick='navigate("profil")'><img width=30px src='res/img/ProfilLogo1.png'><div class=MS>Profil</div></button> <br>
-                    <button type='button' id=BTPost onclick='AddPostView("ajouterPost")'><div class=MS>Genys</div></button> <br>`
+                    <button type='button' id=BTPost onclick='AddPostView("ajouterPost")'><div class=MS>Genys</div></button> <br>
+                    <button type='button'  class='bt-danger' onclick='this.getDecoForProfils()'><div class=MS>Choix du profil</div></button> <br>
+                    <button type='button' id=OptionP onclick='navigate("parametre")'><div class=MS>Parametre</div></button> <br>`
             }
         }
         else{
