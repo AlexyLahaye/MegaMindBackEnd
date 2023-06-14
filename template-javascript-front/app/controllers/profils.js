@@ -84,37 +84,40 @@ class profilsController extends BaseController {
 
     connexionProfil = async (id_profil) => {
         sessionStorage.setItem('tokenProfil' , id_profil);
-        isconnectedProfil(sessionStorage.getItem("tokenProfil"));
     }
 
     getAllProfilsFromIdUser = async () => {
         try {
             const tabProfils = await this.modelP.getAllProfilsFromIdUser(this.splitedToken.id_user)
+            let cpt = 0
             for(let unProfil of tabProfils[0]){
                 console.log(unProfil.id_profil);
                 document.getElementById("contenu_profils").innerHTML +=
-                    `<div class="m-4 col card border-info" style="width: 18rem">
-                            <img src="../res/img/icone_profil.png" class="card-img-top" alt=""> 
+                    `<div class="m-4 col" style="width: 18rem">
+                            <img onclick="profilsController.connexionProfil('${unProfil.id_profil}'); navigate('accueil')" id="p_profil${cpt}" src="./res/img/icone_profil.png" class="C_profil" alt=""> 
                             <div class="card-body" >
                                 <input id="${unProfil.id_profil}" type="hidden" value="${unProfil.id_profil}">
                                 <h5 class="card-title">${unProfil.pseudo_profil}</h5>
-                                <a onclick="profilsController.connexionProfil('${unProfil.id_profil}'); navigate('accueil')" class="btn btn-primary">Se connecter</a>
-                                <a  onclick="profilsController.delProfil('${unProfil.id_profil}')" class="btn btn-danger">Supprimer</a>
                             </div>
                      </div>` ;
+                const avatar_profil = unProfil.avatar_profil
+                if (avatar_profil !== ""){
+                    document.getElementById(`p_profil${cpt}`).src = avatar_profil
+                }
+                cpt ++
             }
             if (tabProfils[0].length < 4){
                 document.getElementById("contenu_profils").innerHTML +=
-                    `<div class="m-4 col card border-info" style="width: 18rem">
-                            <img src="../res/img/icone_add.png" class="card-img-top" alt=""> 
+                    `<div class="m-4 col" style="width: 18rem">
                             <div class="card-body" >
                                 <h5 class="card-title"></h5>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProfil">
-                                  Creer un profil
+                                  Créer un profil
                                 </button>
                             </div>
                      </div>` ;
+
             }
         }catch (e){
             console.log(e)

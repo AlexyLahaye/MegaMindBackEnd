@@ -19,13 +19,6 @@ export default class BaseController {
         } catch {}
     }
 
-    async getDecoForProfils() {
-        try {
-            sessionStorage.removeItem("tokenProfil");
-            navigate('profils')
-        } catch {}
-    }
-
     async composePost(tabPosts, checkString){
         let cpt = 0
         if (checkString === "postComTop3"){
@@ -34,16 +27,15 @@ export default class BaseController {
         for(let unPost of tabPosts[0]){
             const Profil = await this.modelProfil.getProfilByIdProfil(unPost.id_profil)
             let isliKed = "";
-
+            
             // Vérification si l'utilisateur à déja like le post.
             if (unPost.isLiked !== true){
-                isliKed = "<div id=bt_like><img id=btlike src='res/img/Likelogo1.png'></div>"
+                isliKed = "<div id=bt_like><img onclick='likeContenu()' id=btlike src='res/img/Likelogo1.png'></div>"
             } else {
-                isliKed = "<div id=bt_like><img id=btlike src='res/img/Likelogo21.png'></div>"
+                isliKed = "<div id=bt_like><img onclick='dislikeContenu()' id=btlike src='res/img/Likelogo21.png'></div>"
             }
 
             // Conversion de la date pour un affichage compact
-            console.log(unPost.createdAt)
             const createdAt = new Date(unPost.createdAt);
             const currentDate = new Date();
 
@@ -76,7 +68,7 @@ export default class BaseController {
             document.getElementById(checkString).innerHTML +=
                 `<div class=un_post id='un_post-id_post'>
                         <div id=un_post-entete><div id='img_profil-entete'>
-                            <img onclick='' class="p_profil" id=p_profil${cpt} width=40px src='res/img/profilLogo.png'>
+                            <img onclick='sessionStorage.setItem("tokenProfilClicked", "${Profil[0].id_profil}");navigate("profil")' class="p_profil" id=p_profil${cpt} width=40px src='res/img/profilLogo.png'>
                         </div>
                         <div id='txt-entete'>${Profil[0].pseudo_profil}
                             <div id=date_post>${dateDiff}</div>
@@ -86,7 +78,7 @@ export default class BaseController {
                             <img id='param_post-Logo' onclick='' src='res/img/ParametreLogo.png'>
                         </div>
                     </div>
-                    <div id=click_post onclick=''>
+                    <div id=click_post onclick='sessionStorage.setItem("tokenPost", "${unPost.id_post}"); navigate("post")'>
                         <div id=post_contenu>${unPost.contenu_post}</div>
                     </div>
                     <div id=un_post-conclusion>
@@ -113,6 +105,7 @@ export default class BaseController {
     }
     async isconnected(){
         const btn_nav = document.getElementById("btn_nav")
+        let cpt = 0
         if (sessionStorage.getItem("token")) {
             if (!sessionStorage.getItem("tokenProfil")) {
                 btn_nav.innerHTML = `<button type='button' onclick='navigate("profils")'><img width=30px src='res/img/ProfilLogo1.png'><div class=MS>Profils</div></button> <br>`
@@ -122,11 +115,18 @@ export default class BaseController {
                     `<button type='button' id="test123" onclick='navigate("accueil")'><img width=30px src='./res/img/HomeLogo1.png'><div class=MS>Accueil</div></button> <br>
                     <button type='button' onclick='navigate("explorer")'><img width=30px src='../template-javascript-front/res/img/ExploreLogo1.png'><div class=MS>Explorer</div></button> <br>
                     <button type='button' onclick='navigate("notifications")'><img width=30px src='res/img/BellLogo1.png'><div class=MS>Notifications</div></button><br>
-                    <button type='button' onclick='navigate("messagerie")'><img width=30px src='res/img/MessageLogo1.png'><div class=MS>Messages</div></button> <br>
                     <button type='button' onclick='navigate("profil")'><img width=30px src='res/img/ProfilLogo1.png'><div class=MS>Profil</div></button> <br>
                     <button type='button' id=BTPost onclick='AddPostView("ajouterPost")'><div class=MS>Genys</div></button> <br>
-                    <button type='button'  class='bt-danger' onclick='this.getDecoForProfils()'><div class=MS>Choix du profil</div></button> <br>
+                    <button type='button'  class='bt-danger' onclick='sessionStorage.removeItem("tokenProfil");navigate("profils")'><div class=MS>Choix du profil</div></button> <br>
                     <button type='button' id=OptionP onclick='navigate("parametre")'><div class=MS>Parametre</div></button> <br>`
+                //<button type='button' onclick='navigate("messagerie")'><img width=30px src='res/img/MessageLogo1.png'><div class=MS>Messages</div></button> <br>
+                document.getElementById("searchProfil").innerHTML =
+                    `<img id=select_click onclick='getResearchProfil("rechercheProfil"); document.getElementById("searchP").classList.remove("hidden")' src='res/img/SearchLogo.png'/>`
+                if (!sessionStorage.getItem("displayedResearch")){
+
+                }
+                cpt ++
+
             }
         }
         else{

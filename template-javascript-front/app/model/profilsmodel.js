@@ -27,6 +27,16 @@ export default class MyModel {
         }
     }
 
+    getSearchedProfilByPseudo = async (pseudo_profil) => {
+        try{
+            return await this.MegaMindAPI.getSearchedProfilByPseudo(pseudo_profil);
+        }
+        catch (e) {
+            console.log("Aucun profil trouvé");
+            return undefined;
+        }
+    }
+
     creaProfil = async (data) => {
         try{
             return await this.MegaMindAPI.creaProfil(data);

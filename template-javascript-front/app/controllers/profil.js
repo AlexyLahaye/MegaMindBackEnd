@@ -8,13 +8,22 @@ class profilController extends BaseController {
         this.modelPost = new MyModelPost()
         this.modelProfil = new MyModelProfil()
         this.splitedToken = parseJwt(sessionStorage.getItem('token'));
-        this.getAllPostFromIdProfil(sessionStorage.getItem("tokenProfil"));
+        this.getAllPostFromIdProfil();
     }
 
-    getAllPostFromIdProfil = async (id_profil) => {
+    getAllPostFromIdProfil = async () => {
         try {
-            const Profil = await this.modelProfil.getProfilByIdProfil(id_profil)
-            document.getElementById("MegaMind").innerHTML =
+            let Profil =""
+            let id_profil = ""
+            if (sessionStorage.getItem("tokenProfilClicked")){
+                Profil = await this.modelProfil.getProfilByIdProfil(sessionStorage.getItem("tokenProfilClicked"))
+                id_profil = sessionStorage.getItem("tokenProfilClicked")
+                sessionStorage.removeItem("tokenProfilClicked")
+            }else {
+                Profil = await this.modelProfil.getProfilByIdProfil(sessionStorage.getItem("tokenProfil"))
+                id_profil = sessionStorage.getItem("tokenProfil")
+            }
+            document.getElementById("MegaMind_contenu").innerHTML =
                 `<div id=entete-P> Profil
                     <div id='entete-Banner_Perso'>
                         <img id='imgB_profil'>

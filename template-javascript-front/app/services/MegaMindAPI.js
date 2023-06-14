@@ -109,8 +109,6 @@ export default class MegaMindAPI{
         })
     }
 
-
-
     delProfil = (id_profil) => {
         return new Promise ((resolve, reject) =>{
             fetch(`${this.baseUrl}/profil/${id_profil}`, {
@@ -148,6 +146,25 @@ export default class MegaMindAPI{
         })
     }
 
+    getSearchedProfilByPseudo = (pseudo_profil) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/profil/pseudoProfilDYN/${pseudo_profil}`, {
+                method : "GET",
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+
     // PARTIE POST
 
     creaPost = (data) => {
@@ -155,6 +172,25 @@ export default class MegaMindAPI{
             fetch(`${this.baseUrl}/post`, {
                 method : "POST",
                 body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+
+    getPostById = (id_post) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/post/id/${id_post}`, {
+                method : "GET",
                 headers : {'content-type' : 'application/json'}
             }) .then(res => {
                 if (res.status === 200) {
@@ -285,6 +321,46 @@ export default class MegaMindAPI{
                 })
         })
     }
+    // LES ROUTES COMMENTAIRES
+
+    creaCom = (data) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/commentaire`, {
+                method : "POST",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+
+    getAllComFromIdPost = (id_post) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/commentaire/${id_post}`, {
+                method : "GET",
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
 
 
     // LES ROUTES SENSIBILITE
@@ -307,4 +383,44 @@ export default class MegaMindAPI{
         })
     }
 
+    // LES ROUTES SENSIBILITE_PROFIL
+
+    CUSensiProfil = (data) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/sensibilite_profil`, {
+                method : "POST",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+
+    getSensiProfil = (id_profil) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/sensibilite_profil/${id_profil}`, {
+                method : "GET",
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
 }

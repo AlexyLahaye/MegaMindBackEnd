@@ -47,7 +47,7 @@ class explorerController extends BaseController {
 
     getMostLikedPosts = async () => {
         try{
-            const tabPosts = await this.modelPost.getMostComPosts(sessionStorage.getItem("tokenProfil"));
+            const tabPosts = await this.modelPost.getMostLikedPosts(sessionStorage.getItem("tokenProfil"));
             await this.composePost(tabPosts ,"postLikeTop3")
         }catch (e){
             console.log(e)

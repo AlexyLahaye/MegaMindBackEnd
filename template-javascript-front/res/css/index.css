@@ -14,6 +14,7 @@
     height: 45px;
     width: 550px;
     position: fixed;
+    top: 0px;
 }
 #entete-P{
     display: grid;
@@ -27,6 +28,7 @@
     border-bottom: solid 1px rgba(190, 190, 190, 0.5);
     align-items: center;
     justify-items: start;
+    top: 0px;
 }
 #entete_text {
     display: flex;
@@ -95,9 +97,28 @@
 
 #AddPost {
     background-color: white;
+    width: 450px;
     position: fixed;
     top: 20%;
-    left: 42%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+    padding: 15px;
+    border: 1px solid rgba(190, 190, 190, 0.5);
+    border-radius: 20px;
+}
+
+#AddPost #contenus{
+    margin-top: 0px;
+}
+
+#entete_AddPost{
+    display: flex;
+    font-size: 1.5em;
+    height: 45px;
+    width: 450px;
 }
 
 button {
@@ -312,6 +333,18 @@ button:hover {
     object-fit: cover;
     margin: 5px ;
 }
+.C_profil {
+    border-radius: 20px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 5px ;
+    transition: transform 0.2s;
+}
+.C_profil:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
 #img_profil{
     border-radius: 100%;
     width: 100px;
@@ -381,10 +414,23 @@ button:hover {
     height: 16px;
     width: 20px;
 }
+#btn_add_com{
+    border: 1px solid rgba(190, 190, 190, 0.5);
+    background-color: white;
+    transition: all 0.5s;
+    text-align: center;
+    justify-items: center;
+    width: 100px;
+}
+#btn_add_com:hover{
+    cursor: pointer;
+    background-color: #d2d2d2;
+}
 #nb_com{
     margin-left: 5px;
 }
 #add_com{
+    display: flex;
     border-top: 1px solid rgba(235, 235, 235, 0.5);
     height: 65px;
     width: 550px;
@@ -698,6 +744,16 @@ button:hover {
   #right_bordure {
       display: flex;
   }
+
+#searchP{
+    transition: transform 0.3s;
+}
+#searchP.hidden{
+    transform: translateX(-100%);
+}
+#search.visible {
+    transform: translateX(0);
+}
 #search {
     text-align: center;
     background-color: white;
@@ -711,8 +767,21 @@ button:hover {
     height: 50px;
     width: 250px;
 }
+#select_click{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin: 5px ;
+    transition: transform 0.2s;
+}
+
+#select_click:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
 #select_choice{
-    font-size: 1.3em;
+    font-size: 1.2em;
     text-align: center;
     border:  1px solid rgba(235, 235, 235, 0.5);
     width:250px;

@@ -18,6 +18,16 @@ export default class MyModel {
         }
     }
 
+    getPostById = async (id_post) => {
+        try{
+            return await this.MegaMindAPI.getPostById(id_post);
+        }
+        catch (e) {
+            console.log("Il n'y a pas de posts avec cet id");
+            return undefined;
+        }
+    }
+
     getAllPostOfFollowedProfil = async (id_profil) => {
         try{
             return await this.MegaMindAPI.getAllPostOfFollowedProfil(id_profil);
