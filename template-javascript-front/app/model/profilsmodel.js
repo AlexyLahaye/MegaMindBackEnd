@@ -49,6 +49,18 @@ export default class MyModel {
         }
     }
 
+    updateProfil = async (data) => {
+        try{
+            console.log(data)
+            return await this.MegaMindAPI.updateProfil(data);
+        }
+        catch (e) {
+            console.log(e)
+            console.log("Na pas marcher");
+            return undefined;
+        }
+    }
+
     delProfil = async (id_profil) => {
         try{
             console.log(id_profil)

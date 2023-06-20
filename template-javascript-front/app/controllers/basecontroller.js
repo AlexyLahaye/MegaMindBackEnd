@@ -1,7 +1,14 @@
+import MyModelPost from "../model/postmodel.js";
+import MyModelProfil from "../model/profilsmodel.js";
+import MyModelLike from "../model/likemodel.js";
+
 export default class BaseController {
     constructor() {
         this.setBackButtonView('index')
         this.isconnected()
+        this.modelPost = new MyModelPost();
+        this.modelProfil = new MyModelProfil();
+        this.modelLike = new MyModelLike();
     }
     toast(elemId) {
         const toast = new bootstrap.Toast(document.getElementById(elemId))
@@ -19,20 +26,28 @@ export default class BaseController {
         } catch {}
     }
 
+
+
     async composePost(tabPosts, checkString){
+        const user_id_profil = sessionStorage.getItem("tokenProfil")
         let cpt = 0
+        let addLike = [];
+        let removeLike =  [];
+
         if (checkString === "postComTop3"){
             cpt = 3
         }
+
+
         for(let unPost of tabPosts[0]){
             const Profil = await this.modelProfil.getProfilByIdProfil(unPost.id_profil)
             let isliKed = "";
-            
+
             // Vérification si l'utilisateur à déja like le post.
             if (unPost.isLiked !== true){
-                isliKed = "<div id=bt_like><img onclick='likeContenu()' id=btlike src='res/img/Likelogo1.png'></div>"
+                isliKed = `<div id=bt_like${cpt}><img onclick='likeContenu("${unPost.id_post}", "${user_id_profil}", ${cpt}, ${unPost.nbLike});' id=btlike class="btlike" src='res/img/Likelogo1.png'></div>`
             } else {
-                isliKed = "<div id=bt_like><img onclick='dislikeContenu()' id=btlike src='res/img/Likelogo21.png'></div>"
+                isliKed = `<div id=bt_like${cpt}><img onclick='dislikeContenu("${unPost.id_post}", "${user_id_profil}", ${cpt}, ${unPost.nbLike});' id=btlike class="btlike" src='res/img/Likelogo21.png'></div>`
             }
 
             // Conversion de la date pour un affichage compact
@@ -63,8 +78,6 @@ export default class BaseController {
             }
 
 
-
-
             document.getElementById(checkString).innerHTML +=
                 `<div class=un_post id='un_post-id_post'>
                         <div id=un_post-entete><div id='img_profil-entete'>
@@ -84,14 +97,14 @@ export default class BaseController {
                     <div id=un_post-conclusion>
                         <div id=fond_post>
                             <div id=com onclick=''>
-                                <div id=bt_com><img id=btcom src='res/img/MessageLogo2.png'></div>
-                                <div id=nb_com>0</div>
+                                <div id=bt_com><img id=btcom src='res/img/MessageLogo2.png' onclick='sessionStorage.setItem("tokenPost", "${unPost.id_post}"); navigate("post")'></div>
+                                <div id=nb_com>${unPost.nbCom}</div>
                             </div>
                         <div id=like><div id=btlike>
                             ${isliKed}
                             <div id='btlike${unPost.id_post}'></div>
                         </div>
-                        <div id=nb_like>${unPost.nbLike}</div>
+                        <div id='nb_like${cpt}'>${unPost.nbLike}</div>
                     </div>
                     </div>
                     <input type=hidden value=${unPost.id_post}></div></div>`;
@@ -122,9 +135,6 @@ export default class BaseController {
                 //<button type='button' onclick='navigate("messagerie")'><img width=30px src='res/img/MessageLogo1.png'><div class=MS>Messages</div></button> <br>
                 document.getElementById("searchProfil").innerHTML =
                     `<img id=select_click onclick='getResearchProfil("rechercheProfil"); document.getElementById("searchP").classList.remove("hidden")' src='res/img/SearchLogo.png'/>`
-                if (!sessionStorage.getItem("displayedResearch")){
-
-                }
                 cpt ++
 
             }

@@ -50,7 +50,7 @@ export default class MyModel {
 
     getMostComPosts = async (id_profil) => {
         try{
-            return await this.MegaMindAPI.getMostComPosts();
+            return await this.MegaMindAPI.getMostComPosts(id_profil);
         }
         catch (e) {
             console.log("Il n'y a pas de posts a afficher");
@@ -60,7 +60,7 @@ export default class MyModel {
 
     getMostLikedPosts = async (id_profil) => {
         try{
-            return await this.MegaMindAPI.getMostLikedPosts();
+            return await this.MegaMindAPI.getMostLikedPosts(id_profil);
         }
         catch (e) {
             console.log("Il n'y a pas de posts a afficher");

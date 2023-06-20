@@ -108,7 +108,25 @@ export default class MegaMindAPI{
                 })
         })
     }
-
+    updateProfil = (data) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/profil/update`, {
+                method : "POST",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
     delProfil = (id_profil) => {
         return new Promise ((resolve, reject) =>{
             fetch(`${this.baseUrl}/profil/${id_profil}`, {
@@ -362,6 +380,274 @@ export default class MegaMindAPI{
         })
     }
 
+    // LES ROUTES DES LIKES
+    creaLike = (data) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/like`, {
+                method : "POST",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+    deleteLike = (data) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/like/${data.id_contenu_like}/${data.id_profil_like}/${data.id_etat_like}`, {
+                method : "DELETE",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+    // LES ROUTES FOLLOWS
+    creaFollow = (data) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/follow`, {
+                method : "POST",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+    deleteFollow = (data) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/follow/${data.id_profil}/${data.id_profil_suivi}`, {
+                method : "DELETE",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+    getAllOfFollowFromIdProfil = (id_profil) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/follow/you/${id_profil}`, {
+                method : "GET",
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+    getAllOfFollowingFromIdProfil = (id_profil) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/follow/them/${id_profil}`, {
+                method : "GET",
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+    getNbOfFollowFromIdProfil = (id_profil) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/follow/count/you/${id_profil}`, {
+                method : "GET",
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+    getNbOfFollowingFromIdProfil = (id_profil) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/follow/count/them/${id_profil}`, {
+                method : "GET",
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+
+    isFollowed = (id_profil, id_profil_suivi) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/follow/isFollow/${id_profil}/${id_profil_suivi}`, {
+                method : "GET",
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+
+    // LES ROUTES NOTIFICATIONS
+
+    creaNotif = (data) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/notification`, {
+                method : "POST",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+
+    updateNotif = (data) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/notification/update`, {
+                method : "POST",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+    deleteNotif = (id_notification) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/notification/${id_notification}`, {
+                method : "DELETE",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+    getAllNotif = (id_profil) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/notification/${id_profil}`, {
+                method : "GET",
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+
+    getNotifById = (id_notification) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/notification/idNotif/${id_notification}`, {
+                method : "GET",
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+
 
     // LES ROUTES SENSIBILITE
     getAllSensi = () => {
@@ -385,9 +671,29 @@ export default class MegaMindAPI{
 
     // LES ROUTES SENSIBILITE_PROFIL
 
-    CUSensiProfil = (data) => {
+    CreaSensiProfil = (data) => {
         return new Promise ((resolve, reject) =>{
             fetch(`${this.baseUrl}/sensibilite_profil`, {
+                method : "POST",
+                body : JSON.stringify(data),
+                headers : {'content-type' : 'application/json'}
+            }) .then(res => {
+                if (res.status === 200) {
+                    resolve(res.json())
+                } else {
+                    reject(res.status)
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                    reject(err)
+                })
+        })
+    }
+
+    updateSensiProfil = (data) => {
+        return new Promise ((resolve, reject) =>{
+            fetch(`${this.baseUrl}/sensibilite_profil/update`, {
                 method : "POST",
                 body : JSON.stringify(data),
                 headers : {'content-type' : 'application/json'}

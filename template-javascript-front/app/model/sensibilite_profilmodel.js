@@ -5,9 +5,20 @@ export default class MyModel {
         this.MegaMindAPI = new MegaMindAPI();
 
     }
-    CUSensiProfil = async (data) => {
+    CreaSensiProfil = async (data) => {
         try{
-            return await this.MegaMindAPI.CUSensiProfil(data);
+            return await this.MegaMindAPI.CreaSensiProfil(data);
+        }
+        catch (e) {
+            console.log(e)
+            console.log("Na pas marcher");
+            return undefined;
+        }
+    }
+
+    updateSensiProfil = async (data) => {
+        try{
+            return await this.MegaMindAPI.updateSensiProfil(data);
         }
         catch (e) {
             console.log(e)
@@ -21,7 +32,6 @@ export default class MyModel {
             return await this.MegaMindAPI.getSensiProfil(id_profil);
         }
         catch{
-            console.log("Il n'y a pas de sensibilite profil dans la table sensbilite profil");
             return undefined;
         }
     }

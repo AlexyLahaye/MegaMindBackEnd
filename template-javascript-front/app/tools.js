@@ -35,6 +35,32 @@ function include(selector, url, urlcontroller) {
         });
 }
 
+function likeContenu(id_post, id_profil, cpt, nblike) {
+    const addedLike = nblike +1
+    const addLike = JSON.parse(sessionStorage.getItem("addLike")) || [];
+    const Like = {
+        "id_post": id_post,
+        "id_profil": id_profil,
+        "id_etat_like": 2
+    }
+    addLike.push(Like); sessionStorage.setItem("addLike", JSON.stringify(addLike))
+    document.getElementById(`bt_like${cpt}`).innerHTML = `<img onclick='dislikeContenu("${id_post}", "${id_profil}", ${cpt}, ${addedLike})' id=btlike src='res/img/Likelogo21.png'>`
+    document.getElementById(`nb_like${cpt}`).innerHTML = addedLike
+}
+
+function dislikeContenu(id_post, id_profil, cpt, nblike){
+    const removedLike = nblike -1
+    const removeLike = JSON.parse(sessionStorage.getItem("removeLike")) || [];
+    const Like = {
+        "id_post": id_post,
+        "id_profil": id_profil,
+        "id_etat_like": 2
+    }
+    removeLike.push(Like); sessionStorage.setItem("removeLike", JSON.stringify(removeLike))
+    document.getElementById(`bt_like${cpt}`).innerHTML = `<img onclick='likeContenu("${id_post}", "${id_profil}", ${cpt}, ${removedLike})' id=btlike src='res/img/Likelogo1.png'>`
+    document.getElementById(`nb_like${cpt}`).innerHTML = removedLike
+}
+
 function navigate(view) {
     sessionStorage.setItem("currentView", view)
     include('MegaMind_contenu',  `views/${view}.html`, `./controllers/${view}.js`)

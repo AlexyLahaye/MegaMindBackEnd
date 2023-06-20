@@ -2,6 +2,26 @@
   <div id=entete_text>Parametre du profil</div><div id='txtAddPost'></div></div>
 <div id="contenus">
   <div id="infoProfil"></div>
-  <div id="infoSensi"></div>
-  <h4>Options sensibilité</h4>
+  <div id="infoSensi">
+    <h4>Options sensibilité</h4>
+    <div class="flex">
+      <label>Sensibilite Ecriture de vos post :</label>
+      <select class="form-select" id="sensibilite" aria-label="Default select example">
+        <option selected value=0>Aucune Sensibilité</option>
+      </select>
+    </div>
+    <div class="flex">
+      <label>Sensibilite Lecture des posts :</label>
+      <div id="checkSensiLecture" class="form-check form-switch"></div>
+    </div>
+    <div class="flex">
+      <label>Black List de mots :</label>
+      <input id="txt_add_BLWord"class="form-control" type="text" placeholder="Veuillez remplir un par un les mots"/>
+      <div id="button_abo" onclick="parametreController.addBLWord()">Ajouter</div><div id="showBanWords"></div>
+    </div>
+    <button id="BTPost" onclick="parametreController.updateSensiProfil()">Enregistrer</button>
+  </div>
+  <div id="deleteProfil">
+
+  </div>
 </div>

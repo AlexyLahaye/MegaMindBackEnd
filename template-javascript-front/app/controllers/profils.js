@@ -91,7 +91,6 @@ class profilsController extends BaseController {
             const tabProfils = await this.modelP.getAllProfilsFromIdUser(this.splitedToken.id_user)
             let cpt = 0
             for(let unProfil of tabProfils[0]){
-                console.log(unProfil.id_profil);
                 document.getElementById("contenu_profils").innerHTML +=
                     `<div class="m-4 col" style="width: 18rem">
                             <img onclick="profilsController.connexionProfil('${unProfil.id_profil}'); navigate('accueil')" id="p_profil${cpt}" src="./res/img/icone_profil.png" class="C_profil" alt=""> 

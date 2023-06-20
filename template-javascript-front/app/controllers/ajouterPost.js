@@ -1,11 +1,38 @@
 import BaseController from "./basecontroller.js";
 import MyModel from "../model/postmodel.js";
+import MyModelSensi from "../model/sensibilitemodel.js";
+import MyModelSensiProfil from "../model/sensibilite_profilmodel.js";
 
 class AddPostController extends BaseController {
     constructor() {
         super()
         this.model = new MyModel()
+        this.modelSensiProfil = new MyModelSensiProfil()
+        this.modelSensi = new MyModelSensi()
         this.splitedToken = parseJwt(sessionStorage.getItem('token'));
+        this.loadAddPost()
+    }
+
+
+    async loadAddPost(){
+        const id_profil = sessionStorage.getItem("tokenProfil")
+        const userSensi = await this.modelSensiProfil.getSensiProfil(id_profil)
+        console.log(userSensi)
+        const allSensi = await this.modelSensi.getAllSensi()
+        console.log(allSensi)
+        for(let uneSensi of allSensi){
+            if(userSensi !== undefined && userSensi.ecriture_sensibilite === uneSensi.id_sensibilite){
+                document.getElementById("sensibilite").innerHTML +=
+                    `
+                        <option selected value=${uneSensi.id_sensibilite}>${uneSensi.contenu_sensibilite}</option>
+                    `
+            } else {
+                document.getElementById("sensibilite").innerHTML +=
+                    `
+                        <option  value=${uneSensi.id_sensibilite}>${uneSensi.contenu_sensibilite}</option>
+                    `
+            }
+        }
     }
 
     async creaPost() {

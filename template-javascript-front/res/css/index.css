@@ -501,6 +501,13 @@ button:hover {
     width: 550px;
     height: 80px;
 }
+#txt_notif_clickable{
+    color: #4c4cf3;
+}
+#txt_notif_clickable:hover{
+    cursor: pointer;
+}
+
 #contenu_notif {
     grid-column: 1/ 2;
     grid-row: 1/2;
@@ -710,18 +717,37 @@ button:hover {
 }
 
 /*VISU ABOs*/
-   #tout_ABO{
-       display: flex;
-   }
+#tout_ABO{
+    display: flex;
+}
+
+
 #un_abo{
     display:flex;
     border-top:solid 1px rgba(235, 235, 235, 0.8);
-    width: 460px;
-    text-align: center;
-    justify-content:center;
+    width: 550px;
 }
 #un_abo:hover{
     background-color : rgba(233, 233, 233, 0.226);
+}
+#img_profil-entete_abo{
+    margin-left: 150px;
+}
+#button_abo {
+    text-align: center;
+    border: none;
+    background-color: #f3f3f3;
+    border-radius: 30px;
+    padding: 5px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.6em;
+    transition: all 0.2s;
+    width: 183px;
+}
+#button_abo:hover {
+    transition: all 0.4s;
+    background-color: #e6e6e6;
 }
 #text-A{
     font-size:1.5em;
@@ -732,11 +758,31 @@ button:hover {
 /* VISU OPtionP*/
 
    #OptionP {
-       background-color: aqua;
+       background-color: #dbdbdb;
        bottom: 0px;
+   }
+   #OptionS{
+       background-color: #dbdbdb;
+       padding: 5px;
+       width: 140px;
    }
 #img_profil-bg {
     border-radius: 100%;
+}
+.button_BLW{
+    text-align: center;
+    border: none;
+    background-color: #f3f3f3;
+    padding: 5px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.6em;
+    transition: all 0.2s;
+    width: 100px;
+}
+.button_BLW:hover {
+    transition: all 0.4s;
+    background-color: #bd3a3a;
 }
 
 
